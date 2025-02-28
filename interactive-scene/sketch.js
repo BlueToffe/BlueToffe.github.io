@@ -8,7 +8,7 @@ let x = 0;
 let y = 0;
 let changeY = 1;
 let gravMulti = 1.03;
-let grounded = true;
+let grounded = false;
 let playerSize = 30;
 
 
@@ -29,7 +29,7 @@ function draw() {
   drawPlayer();
 }
 
-function playerMovment(){
+function playerMovment() {
   if (keyIsDown(LEFT_ARROW)) {
     x -= 5;
   } 
@@ -44,8 +44,8 @@ function playerMovment(){
 }
 
 function gravity() {
-  if (y <= 720){
-
+  if (grounded === false){
+    
   }
 
 }
@@ -60,5 +60,4 @@ function keyReleased() {
   if (keyCode === DOWN_ARROW) {
     playerSize = 30;
   }
-
 }
