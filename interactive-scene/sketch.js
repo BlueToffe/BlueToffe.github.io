@@ -51,13 +51,15 @@ function playerMovment() {
 
 function gravity() {
   if (grounded === false){
-    //take the blockx and block size x and y and find if character is on those if so set character y to top of blockY
   }
 }
 
-function moveToSurface() {
-  if (grounded === true) {
-
+function collision(blockId) {
+  if (grounded === false) {
+    //take the blockx and block size x and y and find if character is on those if so set character y to top of blockY
+    if (y > blockLocationY[blockId] && y > blockSizeY[blockId] && x < blockSizeX[blockId] && x > blockLocationX ) {
+      y = blockLocationY + playerSize;  
+    }
   }
 }
 
@@ -78,5 +80,6 @@ function drawBlocks() {
   for (let block = 0; block <= blockLocationX.length; block += 1) {
     fill(150);
     rect(blockLocationX[block], blockLocationY[block], blockSizeX[block], blockSizeY[block]);
+    collision(block);
   }
 }
