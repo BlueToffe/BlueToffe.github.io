@@ -1,6 +1,6 @@
-// Project Title
-// Your Name
-// Date
+// interactive scene
+// Parker
+// 4/03/2025
 //
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
@@ -9,18 +9,22 @@
 let x = 0;
 let y = 0;
 let changeY = 1;
-let gravMulti = 1.03;
-let grounded = false;
+let gravMulti = 2;
+let grounded =false;
 let playerSize = 30;
-let blockLocationX = [150, 300, 600];
-let blockLocationY = [50, 120, 200];
-let blockSizeX = [50, 70, 80];
-let blockSizeY = [30, 40, 20];
+let blockLocationX;
+let blockLocationY;
+let blockSizeX;
+let blockSizeY;
 
 function setup() {
-  createCanvas(1280, 720);
+  createCanvas(720, 720);
   y = height/2;
   x = width/2;
+  blockLocationX = [Math.round(random(0, 720)), Math.round(random(0, 720)), Math.round(random(0, 720))];
+  blockLocationY = [Math.round(random(0, 720)), Math.round(random(0, 720)), Math.round(random(0, 720))];
+  blockSizeX = [Math.round(random(0, 150)), Math.round(random(0, 150)), Math.round(random(0, 150))];
+  blockSizeY = [Math.round(random(0, 150)), Math.round(random(0, 150)), Math.round(random(0, 150))];
 }
 
 function draw() {
@@ -28,58 +32,67 @@ function draw() {
   playerMovment();
   gravity();
 
-
   //drawing things like player and level
-  background(255);
+  background(50);
   drawBlocks();
   drawPlayer();
 }
 
 function playerMovment() {
+  // moves player baised on key press
+  // was going to add jumping and crouching but couldn't figure it out
+
   if (keyIsDown(LEFT_ARROW)) {
-    x -= 5;
+    x -= 4.2;
   } 
 
   if (keyIsDown(RIGHT_ARROW)) {
-    x += 5;
+    x += 4.2;
   } 
 
-  if (keyIsDown(DOWN_ARROW)) {
-    playerSize = 20;
-  }
 }
 
 function gravity() {
   if (grounded === false){
+    y += changeY * gravMulti;
   }
 }
 
 function collision(blockId) {
-  if (grounded === false) {
-    //take the blockx and block size x and y and find if character is on those if so set character y to top of blockY
-    if (y > blockLocationY[blockId] && y > blockSizeY[blockId] && x < blockSizeX[blockId] && x > blockLocationX ) {
-      y = blockLocationY + playerSize;  
-    }
+  // takes blockId input from the draw block function and figures out if it should or shouldn't collide based on coordinates  
+  if (y >= blockLocationY[blockId] - playerSize  && y <= blockLocationY[blockId] + blockSizeY[blockId] && x < blockLocationX[blockId] + blockSizeX[blockId] && x > blockLocationX[blockId] - playerSize) {
+    y = blockLocationY[blockId] - playerSize;
+    grounded = true;
+    console.log(x, y, "on ground " + grounded, blockLocationX[blockId]);
+  } 
+
+  else   {
+    grounded = false;
   }
-}
+
+  if (y >= height - playerSize) {
+    y = height - playerSize;
+    grounded = true;
+  }
+}   
 
 function drawPlayer() {
-  fill(255);
+  // draws player
+  fill("#af4bff");
   rect(x, y, 30, playerSize);
   rect(x + 6, y + 6, 5);
   rect(x + 19, y + 6, 5);
 }
 
-function keyReleased() {
-  if (keyCode === DOWN_ARROW) {
-    playerSize = 30;
-  }
-}
-
 function drawBlocks() {
-  for (let block = 0; block <= blockLocationX.length; block += 1) {
+  for (let block = 0; block <= blockLocationX.length - 1; block++) {
     fill(150);
     rect(blockLocationX[block], blockLocationY[block], blockSizeX[block], blockSizeY[block]);
     collision(block);
   }
+}
+
+function mouseClicked() {
+  x = mouseX;
+  y = mouseY;
 }
