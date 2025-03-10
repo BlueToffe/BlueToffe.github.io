@@ -1,6 +1,6 @@
-// Project Title
-// Your Name
-// Date
+// The Battle Cats
+// Parker Duggan
+// Date 
 //
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
