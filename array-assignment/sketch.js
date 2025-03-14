@@ -6,7 +6,7 @@
 // - describe what you did to take this project "above and beyond"
 
 
-//
+// cat stat setup
 let cat = {
   health: 100,
   damage: 8,
@@ -57,6 +57,13 @@ let awakenedBahamutCat = {
   ability: "multi-hit"
 };
 
+//general variable setup
+const GROUND = height - 60;
+let x = width - width/5;
+let catsOut = [];
+
+
+
 function setup() {
   frameRate(30);
   createCanvas(windowWidth, windowHeight);
@@ -64,14 +71,19 @@ function setup() {
 
 function draw() {
   background(220);
+  catSpawn();
   move();
   drawCat();
 }
 
 function drawCat() {
-  
+  for (let unit = 0; unit < catsOut.length; unit++) {
+
+  }
 }
 
 function move() {
+}
 
+function catSpawn() {
 }
