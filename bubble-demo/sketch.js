@@ -31,11 +31,12 @@ function draw() {
 }
 
 function mousePressed() {
-  for (let bubble = theBubbles.length - 1; bubble === 0; bubble--) {
+  for (let i = theBubbles.length - 1; i >= 0; i--) {
     //check if bubble is clicked on
+    let bubble = theBubbles[i];
     if (dist(mouseX, mouseY, bubble.x, bubble.y) < bubble.radius) {
-      let index = theBubbles.indexOf(bubble);
-      theBubbles.splice(index, 1);
+      // let index = theBubbles.indexOf(bubble);
+      theBubbles.splice(i, 1);
       break;
     }
   }
