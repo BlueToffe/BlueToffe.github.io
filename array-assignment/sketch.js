@@ -71,19 +71,9 @@ function setup() {
 
 function draw() {
   background(220);
-  catSpawn();
-  move();
   drawCat();
 }
 
 function drawCat() {
-  for (let unit = 0; unit < catsOut.length; unit++) {
-
-  }
-}
-
-function move() {
-}
-
-function catSpawn() {
+  rect(x, 500, 60, 60);
 }
