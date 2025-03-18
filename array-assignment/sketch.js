@@ -58,22 +58,37 @@ let awakenedBahamutCat = {
 };
 
 //general variable setup
-const GROUND = height - 60;
-let x = width - width/5;
+const GROUND = 500;
+let x;
 let catsOut = [];
+let buttonLocation = [400, 540, 680, 820];
 
 
 
 function setup() {
   frameRate(30);
   createCanvas(windowWidth, windowHeight);
+  x = width - width/5;
 }
 
 function draw() {
   background(220);
   drawCat();
+  drawButton();
+}
+
+function drawButton() {
+  for (let location = 0; location < buttonLocation.length; location++) {
+    rect(buttonLocation[location], GROUND + 200, 120, 60);
+  }
+}
+
+function spawnCats() {
+
+  
 }
 
 function drawCat() {
-  rect(x, 500, 60, 60);
 }
+
+
