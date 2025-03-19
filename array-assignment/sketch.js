@@ -62,8 +62,8 @@ const GROUND = 500;
 let x;
 let catsOut = [];
 let buttonLocation = [400, 540, 680, 820];
-
-
+let buttonWidth = 120;
+let buttonHeight = 60;
 
 function setup() {
   frameRate(30);
@@ -78,17 +78,25 @@ function draw() {
 }
 
 function drawButton() {
+  //draws buttons taking locations from the buttonLocation array
   for (let location = 0; location < buttonLocation.length; location++) {
-    rect(buttonLocation[location], GROUND + 200, 120, 60);
+    rect(buttonLocation[location], GROUND + 200, buttonWidth, buttonHeight);
   }
 }
 
-function spawnCats() {
+function mousePressed() {
+  //takes the location of the button pressed
+  for (let location = 0; location < buttonLocation.length; location++) {
+    if (mouseX >= buttonLocation[location] && mouseX <= buttonLocation[location] + buttonWidth && mouseY >= buttonLocation[location] && mouseY <= buttonLocation + buttonHeight) {
+      spawnCat(location);
+    }
+  }
+  console.log("clicked");
+}
 
-  
+function spawnCat(buttonPressed) {
+  console.log("you made it");
 }
 
 function drawCat() {
 }
-
-
