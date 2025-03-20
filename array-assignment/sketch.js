@@ -8,6 +8,7 @@
 
 // cat stat setup
 let cat = {
+  type: "cat",
   health: 100,
   damage: 8,
   moveSpeed: 10,
@@ -20,6 +21,7 @@ let cat = {
 };
 
 let axeCat = {
+  type: "axe",
   health: 200,
   damage: 25,
   moveSpeed: 12,
@@ -33,6 +35,7 @@ let axeCat = {
 };
 
 let tankCat = {
+  type: "tank",
   health: 400,
   damage: 2,
   moveSpeed: 8,
@@ -45,6 +48,7 @@ let tankCat = {
 };
 
 let awakenedBahamutCat = {
+  type: "ABC",
   health: 25500,
   damage: 93500,
   moveSpeed: 60,
@@ -59,10 +63,9 @@ let awakenedBahamutCat = {
 
 //general variable setup
 const GROUND = 500;
-let x;
 let catsOut = [];
 let buttonLocation = [400, 540, 680, 820];
-let buttonWidth = 120;
+let buttonWidth = 100;
 let buttonHeight = 60;
 
 function setup() {
@@ -87,7 +90,7 @@ function drawButton() {
 function mousePressed() {
   //takes the location of the button pressed
   for (let location = 0; location < buttonLocation.length; location++) {
-    if (mouseX >= buttonLocation[location] && mouseX <= buttonLocation[location] + buttonWidth && mouseY >= buttonLocation[location] && mouseY <= buttonLocation + buttonHeight) {
+    if (mouseX >= buttonLocation[location] && mouseX <= buttonLocation[location] + buttonWidth && mouseY >= GROUND + 200) { 
       spawnCat(location);
     }
   }
@@ -95,8 +98,31 @@ function mousePressed() {
 }
 
 function spawnCat(buttonPressed) {
-  console.log("you made it");
+  if (catsOut.length < 50){  
+    if (buttonPressed === 0) {
+      catsOut.push(cat);
+    }
+    if (buttonPressed === 1) {
+      catsOut.push(axeCat);
+    }
+    if (buttonPressed === 2) {
+      catsOut.push(tankCat);
+    }
+    if (buttonPressed === 3) {
+      catsOut.push(awakenedBahamutCat);
+    }
+  }
+}
+
+function takeDamage() {
+
 }
 
 function drawCat() {
+  for (let cats = catsOut.length - 1; cat >= 0; cats--) {
+    if (catsOut[cats].type === "cat") {
+      rect(60, 60, 200, 40);
+
+    }
+  }
 }
