@@ -1,74 +1,100 @@
 // The Battle Cats
 // Parker Duggan
-// Date 
+// 20/03/2025
 //
 // Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// - learned basic classes
+// - used the classes it work as structured arrayand took data from them
 
 
 // cat stat setup
-let cat = {
-  type: "cat",
-  health: 100,
-  damage: 8,
-  moveSpeed: 10,
-  knockback: 3,
-  attackFrequency: 37,
-  attackStartup: 8,
-  attackBackswing: 10,
-  rechargeTime: 5000,
-  attackType: "single",
-};
 
-let axeCat = {
-  type: "axe",
-  health: 200,
-  damage: 25,
-  moveSpeed: 12,
-  knockback: 3,
-  attackFrequency: 27,
-  attackStartup: 8,
-  attackBackswing: 8,
-  rechargeTime: 7,
-  attackType: "single",
-  ability: "strong-red"
-};
+class createCat {
+  constructor(catType, catImage) {
+    this.catType = catType;
+    if (this.catType === "cat") {
+      this.cost = 50;
+      this.health = 100;
+      this.damage = 8;
+      this.moveSpeed = 10;
+      this.knockback = 3;
+      this.attackFrequency = 37;
+      this.attackStartup = 8;
+      this.attackBackswing = 10;
+      this.rechargeTime = 60;
+      this.location = 1200;
+      this.image = catImage;
+    }
 
-let tankCat = {
-  type: "tank",
-  health: 400,
-  damage: 2,
-  moveSpeed: 8,
-  knockback: 1,
-  attackFrequency: 67,
-  attackStartup: 8,
-  attackBackswing: 8,
-  rechargeTime: 8000,
-  attackType: "area",
-};
+    else if (this.catType === "axe") {
+      this.cost = 50;
+      this.health = 200;
+      this.damage = 25;
+      this.moveSpeed = 12;
+      this.knockback = 3;
+      this.attackFrequency = 27;
+      this.attackStartup = 8;
+      this.attackBackswing = 8;
+      this.rechargeTime = 60;
+      this.location = 1200;
+      this.image = catImage;
+    }
 
-let awakenedBahamutCat = {
-  type: "ABC",
-  health: 25500,
-  damage: 93500,
-  moveSpeed: 60,
-  knockback: 6,
-  attackFrequency: 93,
-  attackStartup: 5,
-  attackBackswing: 73,
-  rechargeTime: 106670,
-  attackType: "area",
-  ability: "multi-hit"
-};
+    else if (this.catType === "tank") {
+      this.cost = 50;
+      this.health = 400;
+      this.damage = 2;
+      this.moveSpeed = 8;
+      this.knockback = 1;
+      this.attackFrequency = 67;
+      this.attackStartup = 8;
+      this.attackBackswing = 8;
+      this.rechargeTime = 60;
+      this.location = 1200;
+      this.image = catImage;
+    }
+
+    else if (this.catType === "ABC") {
+      this.cost = 50;
+      this.health = 25500;
+      this.damage = 93500;
+      this.moveSpeed = 30;
+      this.knockback = 3;
+      this.attackFrequency = 93;
+      this.attackStartup = 5;
+      this.attackBackswing = 73;
+      this.rechargeTime = 2936;
+      this.location = 1200;
+      this.image = catImage;
+    }
+  }
+}
 
 //general variable setup
 const GROUND = 500;
+let baseStats = {health: 1000, damage: 100,};
 let catsOut = [];
-let buttonLocation = [400, 540, 680, 820];
+let buttonLocation = [600, 740, 880, 1020];
 let buttonWidth = 100;
 let buttonHeight = 60;
+let lastShot;
+let lazerX = 60;
+let baseLocation = 60;
+let money = 0;
+let ABCImage;
+let catImage;
+let tankImage;
+let axeImage;
+
+function preload() {
+  ABCImage = loadImage("images/ABC.png");
+  catImage = loadImage("images/cat.png");
+  tankImage = loadImage("images/tank.png");
+  axeImage = loadImage("images/axeCat.png");
+}
 
 function setup() {
+  lastShot = frameCount;
   frameRate(30);
   createCanvas(windowWidth, windowHeight);
   x = width - width/5;
@@ -76,6 +102,8 @@ function setup() {
 
 function draw() {
   background(220);
+  money += 5.6;
+  text(str(Math.round(money)), width/2, 60);
   drawCat();
   drawButton();
 }
@@ -98,31 +126,73 @@ function mousePressed() {
 }
 
 function spawnCat(buttonPressed) {
+  //adds cats to array while subratcting money
   if (catsOut.length < 50){  
     if (buttonPressed === 0) {
-      catsOut.push(cat);
+      if (money >= 50){
+        money -= 50;
+        catsOut.push(new createCat("cat", catImage));
+      }
     }
     if (buttonPressed === 1) {
-      catsOut.push(axeCat);
+      if (money >= 300){
+        money -= 300;
+        catsOut.push(new createCat("axe", axeImage));
+      }
     }
     if (buttonPressed === 2) {
-      catsOut.push(tankCat);
+      if (money >= 150){
+        money -= 150;
+        catsOut.push(new createCat("tank", tankImage));
+      }
     }
     if (buttonPressed === 3) {
-      catsOut.push(awakenedBahamutCat);
+      if (money >= 4500){
+        money -= 4500;
+        catsOut.push(new createCat("ABC", ABCImage));
+      }
     }
   }
 }
 
-function takeDamage() {
+function takeDamage(catIndex) {
+  // is supposed the create a lazer that damages but ran out of time and couldn't figure it out in time
+  if (frameCount === lastShot + 30) {
+    catsOut[catIndex].health -= baseStats.damage;
+    lastShot = frameCount;
+  }
+  lazerX += 5;
+  rect(lazerX, GROUND, 20, 100);
 
+  if (lazerX > 1200) {
+    lazerX = 0;
+  }
 }
 
 function drawCat() {
-  for (let cats = catsOut.length - 1; cat >= 0; cats--) {
-    if (catsOut[cats].type === "cat") {
-      rect(60, 60, 200, 40);
+  // draws cats, checks if health is less then or equal to zero and deleting if true, and damages the cats
+  for (let cats = catsOut.length - 1; cats >= 0; cats--) {
+    catsOut[cats].location -= catsOut[cats].moveSpeed;
 
+    if (catsOut[cats].health <= 0) {
+      catsOut.splice(cats, 1);
     }
+
+    else if (catsOut[cats].catType === "cat") {
+      image(catsOut[cats].image, catsOut[cats].location, GROUND);
+    }
+
+    else if (catsOut[cats].catType === "axe") {
+      image(catsOut[cats].image, catsOut[cats].location, GROUND, 128, 128);
+    }
+
+    else if (catsOut[cats].catType === "tank") {
+      image(catsOut[cats].image, catsOut[cats].location, GROUND, 128, 128);
+    }
+
+    else if (catsOut[cats].catType === "ABC") {
+      image(catsOut[cats].image, catsOut[cats].location, GROUND - 220);
+    }
+    takeDamage(cats);
   }
 }
