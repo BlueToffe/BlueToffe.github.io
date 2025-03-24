@@ -5,6 +5,7 @@
 - [Perlin Noise Demo](perlin-noise) 
 - [Terrain Generation](terrain)
 - [Bubble Demo](bubble-demo)
+- [Grid Neighbours](neighbours)
 
 # CS30 Projects
 - [Interactive Scene](interactive-scene)
