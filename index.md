@@ -6,6 +6,7 @@
 - [Terrain Generation](terrain)
 - [Bubble Demo](bubble-demo)
 - [Grid Neighbours](neighbours)
+- [Rectangle Grid](rectangle-grid)
 
 # CS30 Projects
 - [Interactive Scene](interactive-scene)
