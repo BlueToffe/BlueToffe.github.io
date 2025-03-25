@@ -5,7 +5,7 @@
 //             [0,0,1,1],
 //             [0,1,0,0]];
 // const CELL_SIZE = 100;   //do this if you are just choosing a size
-let cellSize;
+let CELL_SIZE;
 const SQUARE_DIMENSIONS = 10;
 let grid;
 
@@ -14,10 +14,10 @@ function setup() {
 
   //make the largest square that fits
   if (height > width) {
-    cellSize = width / SQUARE_DIMENSIONS;
+    CELL_SIZE = width / SQUARE_DIMENSIONS;
   }
-  else {
-    cellSize = height / SQUARE_DIMENSIONS;
+  else {  
+    CELL_SIZE = height / SQUARE_DIMENSIONS;
   }
 
   grid = generateRandomGrid(SQUARE_DIMENSIONS, SQUARE_DIMENSIONS);
@@ -48,7 +48,7 @@ function displayGrid() {
       else if (grid[y][x] === 0) {
         fill("white");
       }
-      rect(x * cellSize, y * cellSize, cellSize, cellSize);
+      rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
     }
   }
 }
@@ -65,8 +65,8 @@ function generateGrid(cols, rows) {
 }
 
 function mousePressed() {
-  let x = Math.floor(mouseX/cellSize);
-  let y = Math.floor(mouseY/cellSize);
+  let x = Math.floor(mouseX/CELL_SIZE);
+  let y = Math.floor(mouseY/CELL_SIZE);
   toggleCell(x, y);
 }
 
