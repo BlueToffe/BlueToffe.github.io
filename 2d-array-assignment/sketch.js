@@ -29,14 +29,15 @@ function setup() {
 function draw() {
   background(220);
 
-  displayClickableGrid();
+  displayGrid();
 }
 
-function displayClickableGrid() {
+function displayGrid() {
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
       fill(255);
       rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+      createSquares(x, y);
     }
   }
 }
@@ -50,4 +51,8 @@ function generateGrid(cols, rows) {
     }
   }
   return newGrid;
+}
+
+function createSquares(x, y) {
+  
 }
