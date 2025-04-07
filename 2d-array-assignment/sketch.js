@@ -28,7 +28,7 @@ function setup() {
 
 function draw() {
   background(220);
-
+  
   displayGrid();
 }
 
@@ -54,5 +54,6 @@ function generateGrid(cols, rows) {
 }
 
 function createSquares(x, y) {
-  
+  fill("red");
+  grid[y][x];
 }
