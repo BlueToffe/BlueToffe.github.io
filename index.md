@@ -10,6 +10,7 @@
 - [Game of Life](game-of-life)
 - [Character moving through gird](moveing-through-gird)
 - [walker opp](walker-demo)
+- [fireworks oop](fireworks)
 
 # CS30 Projects
 - [Interactive Scene](interactive-scene)
