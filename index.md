@@ -12,5 +12,7 @@
 - [walker opp](walker-demo)
 - [fireworks oop](fireworks)
 - [connected nodes oop](connected-nodes)
+- [local storage](local-storage)
+
 # CS30 Projects
 - [Interactive Scene](interactive-scene)
