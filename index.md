@@ -13,6 +13,7 @@
 - [fireworks oop](fireworks)
 - [connected nodes oop](connected-nodes)
 - [local storage](local-storage)
+- [2d Collide Demo](collision-demo)
 
 # CS30 Projects
 - [Interactive Scene](interactive-scene)
