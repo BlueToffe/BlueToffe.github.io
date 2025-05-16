@@ -14,6 +14,7 @@
 - [connected nodes oop](connected-nodes)
 - [local storage](local-storage)
 - [2d Collide Demo](collision-demo)
+- [inheritance demo](free-money)
 
 # CS30 Projects
 - [Interactive Scene](interactive-scene)
