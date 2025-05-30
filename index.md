@@ -15,6 +15,7 @@
 - [local storage](local-storage)
 - [2d Collide Demo](collision-demo)
 - [inheritance demo](free-money)
+- [Serpinski tirangle](serpinski)
 
 # CS30 Projects
 - [Interactive Scene](interactive-scene)
